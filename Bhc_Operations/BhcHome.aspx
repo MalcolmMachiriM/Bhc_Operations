@@ -18,7 +18,7 @@
                                         <div class="row row-cols-xxl-5 row-cols-md-4 row-cols-3 g-0">
                                             <div class="col">
                                                 <div class="py-4 px-4">
-                                                    <h5 class="text-muted text-uppercase fs-13">Members</h5>
+                                                    <h5 class="text-muted text-uppercase fs-13">Sowers</h5>
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-grow-1 ms-4">
                                                             <h2 class="mb-0"><span class="counter-value" data-target="197">5</span></h2>
@@ -28,7 +28,7 @@
                                             </div><!-- end col -->
                                             <div class="col">
                                                 <div class="mt-4 mt-md-0 py-4 px-4">
-                                                    <h5 class="text-muted text-uppercase fs-13">Events</h5>
+                                                    <h5 class="text-muted text-uppercase fs-13">Bales</h5>
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-grow-1 ms-4">
                                                             <h2 class="mb-0"><span class="counter-value" data-target="489.4">10</span></h2>
@@ -38,7 +38,7 @@
                                             </div><!-- end col -->
                                             <div class="col">
                                                 <div class="mt-3 mt-md-0 py-4 px-4">
-                                                    <h5 class="text-muted text-uppercase fs-13">Total Projects</h5>
+                                                    <h5 class="text-muted text-uppercase fs-13"> Projects</h5>
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-grow-1 ms-4">
                                                             <h2 class="mb-0"><span class="counter-value" data-target="32.89">8</span></h2>
@@ -46,26 +46,8 @@
                                                     </div>
                                                 </div>
                                             </div><!-- end col -->
-                                            <div class="col">
-                                                <div class="mt-4 mt-md-0 py-4 px-4">
-                                                    <h5 class="text-muted text-uppercase fs-13">Closed Projects</h5>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-grow-1 ms-4">
-                                                            <h2 class="mb-0"><span class="counter-value" data-target="32.89">20</span></h2>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end col -->
-                                            <div class="col">
-                                                <div class="mt-3 mt-md-0 py-4 px-4">
-                                                    <h5 class="text-muted text-uppercase fs-13">Ongoing Projects</h5>
-                                                    <div class="d-flex align-items-center">
-                                                       <div class="flex-grow-1 ms-4">
-                                                            <h2 class="mb-0"><span class="counter-value" data-target="32.89">10</span></h2>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- end col -->
+                                            
+         
                                         </div><!-- end row -->
                                     </div><!-- end card body -->
                                 </div><!-- end card -->

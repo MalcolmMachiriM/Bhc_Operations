@@ -45,7 +45,7 @@
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <!-- Dark Logo-->
-                <a href="Dashboard.aspx" runat="server" id="lg" class="logo logo-dark">
+                <a href="BhcHome.aspx" runat="server" id="lg" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="assets/images/ComartonLogo.png" alt="" height="60">
                     </span>
@@ -54,7 +54,7 @@
                     </span>
                 </a>
                 <!-- Light Logo-->
-                <a href="Dashboard.aspx" runat="server" id="ln" class="logo logo-light">
+                <a href="BhcHome.aspx" runat="server" id="ln" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="assets/images/ComartonLogo.png" alt="" height="60">
                     </span>
@@ -76,9 +76,9 @@
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="Dashboard.aspx" runat="server" id="ds"
+                            <a class="nav-link menu-link" href="BhcHome.aspx" runat="server" id="ds"
                                 aria-expanded="false" aria-controls="sidebarAuth">
-                                <i class="mdi mdi-monitor-dashboard"></i><span data-key="t-authentication">Dashboard</span>
+                                <i class="mdi mdi-monitor-dashboard"></i><span data-key="t-authentication">BhcHome</span>
                             </a>
                         </li>
                         <li class="nav-item">
