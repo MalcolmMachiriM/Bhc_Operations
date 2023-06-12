@@ -23,10 +23,16 @@ namespace Bhc_Operations.Models
         #endregion
 
         #region methods
-        public float CalculateGross(float quantity, float mass, float price)
+        protected float CalculateGross(float quantity, float mass, float price)
         {
             float gross = mass * quantity * price;
             return gross;
+        }
+
+        protected float CalculateTax1(float quantity, float mass, float price)
+        {
+            float gross = CalculateGross(quantity, mass, price);
+            return (float)(gross - (gross * 0.03));
         }
         #endregion
     }
