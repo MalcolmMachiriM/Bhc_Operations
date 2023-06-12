@@ -91,6 +91,9 @@
     <Compile Include="Bhc_Operations.Master.designer.cs">
       <DependentUpon>Bhc_Operations.Master</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bale.cs" />
+    <Compile Include="Models\Debt.cs" />
+    <Compile Include="Models\Pallete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
