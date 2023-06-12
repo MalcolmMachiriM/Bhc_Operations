@@ -20,6 +20,8 @@ namespace Bhc_Operations.Models
         public string Grade { get {  return mGrade; } set { mGrade = value; } }
         public float Price { get {  return mPrice; } set { mPrice = value; } }
         public float Mass { get { return mMass; } set { mMass = value; } }
+
+        public int count { get; private set; }
         #endregion
 
         #region methods
@@ -35,7 +37,7 @@ namespace Bhc_Operations.Models
         }
 
 
-        public static float CalcNetAfterTaxes(float gross)
+        public static float CalcNetAfterTaxes(float gross, Bale bales)
         {
             float tax1 = 0.003f * gross;
             float tax2 = (0.015f * gross) + (0.02f * CalculateTotalMass(bales));
@@ -78,7 +80,7 @@ namespace Bhc_Operations.Models
             return totalCommission;
         }
 
-        public static float ApplyRebate(float gross, Rebate rebate)
+        public static float ApplyRebate(float gross, Rebate rebate, List<Bale> bales)
         {
             float rebateAmount = rebate.flatAmount + (rebate.ratePerKg * CalculateTotalMass(bales));
             float net = gross - rebateAmount;
@@ -89,7 +91,7 @@ namespace Bhc_Operations.Models
             float gross = CalculateGross(bales);
             Console.WriteLine("Gross Value: $" + gross);
 
-            float netAfterTaxes = CalcNetAfterTaxes(gross);
+            float netAfterTaxes = CalcNetAfterTaxes(gross, bales);
             Console.WriteLine("Net Value After Taxes: $" + netAfterTaxes);
 
             float totalCommission = ProcessDebts(debts);
@@ -100,6 +102,11 @@ namespace Bhc_Operations.Models
                 netAfterTaxes = ApplyRebate(netAfterTaxes, rebate);
             }
             Console.WriteLine("Net Proceeds Due to Grower: $" + netAfterTaxes);
+        }
+
+        private static float ApplyRebate(float netAfterTaxes, Rebate rebate)
+        {
+            throw new NotImplementedException();
         }
 
         public static void Main()
@@ -122,8 +129,8 @@ namespace Bhc_Operations.Models
             // Create a list of rebates
             List<Rebate> rebates = new List<Rebate>
         {
-            new Rebate { flatAmount = 50, ratePerKg = 0.02m },
-            new Rebate { flatAmount = 20, ratePerKg = 0.01m }
+            new Rebate { flatAmount = 50, ratePerKg = 0.02f },
+            new Rebate { flatAmount = 20, ratePerKg = 0.01f }
         };
 
             ProcessSale(bales, debts, rebates);

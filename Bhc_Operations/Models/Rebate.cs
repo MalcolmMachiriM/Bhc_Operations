@@ -7,7 +7,7 @@ namespace Bhc_Operations.Models
 {
     public class Rebate
     {
-        public decimal flatAmount;
-        public decimal ratePerKg;
+        public float flatAmount;
+        public float ratePerKg;
     }
 }
