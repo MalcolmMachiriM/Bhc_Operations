@@ -34,6 +34,11 @@ namespace Bhc_Operations.Models
             float gross = CalculateGross(quantity, mass, price);
             return (float)(gross - (gross * 0.03));
         }
+
+        protected float CalculateTax2(float quantity, float mass, float price)
+        {
+            return (float)(CalculateGross(quantity, mass, price) * 0.015);
+        }
         #endregion
     }
 }
