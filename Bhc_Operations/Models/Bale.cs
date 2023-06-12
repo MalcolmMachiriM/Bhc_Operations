@@ -19,7 +19,15 @@ namespace Bhc_Operations.Models
         public string Barcode { get { return mBarcode; } set { mBarcode = value; } }
         public string Grade { get {  return mGrade; } set { mGrade = value; } }
         public float Price { get {  return mPrice; } set { mPrice = value; } }
-        public float Mass { get { return mMass; } set { mMass = value; } } 
+        public float Mass { get { return mMass; } set { mMass = value; } }
+        #endregion
+
+        #region methods
+        public float CalculateGross(float quantity, float mass, float price)
+        {
+            float gross = mass * quantity * price;
+            return gross;
+        }
         #endregion
     }
 }
