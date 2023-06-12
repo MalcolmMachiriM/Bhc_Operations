@@ -69,6 +69,17 @@ namespace Bhc_Operations.Models
             }
             return Tuple.Create(remainingGross, totalComission);
         }
+        protected float CalculateRebate1(Debt debt, float gross, float time)
+        {
+            return CalculateDebt(debt, gross, time) + (0.05f * Mass);
+        }
+
+        protected float CalculateRebate2(Debt debt, float gross, float time )
+        {
+            return CalculateDebt(debt, gross, time) + (10.02f * Mass * Price);
+        }
         #endregion
     }
+
+    
 }
