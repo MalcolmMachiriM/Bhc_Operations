@@ -49,6 +49,26 @@ namespace Bhc_Operations.Models
         {
             return qty * 5.00f;
         }
+
+        protected float CalculateDebt(Debt debt, float gross, float time )
+        {
+            return gross - debt.Amount - (debt.Amount *time* debt.InterestRate/100 )- (debt.Amount + debt.InterestRate*0.0005f);
+        }
+
+        protected Tuple<float,float> ProcessDebtItems(List<Debt> debt, float gross, float time)
+        {
+            float remainingGross = 0.00f;
+            float totalComission = 0.00f;
+            foreach (Debt item in debt)
+            {
+                for (item.Priority  = 0; item.Priority < debt.Count; item.Priority++)
+                {
+                    remainingGross += CalculateDebt(item,gross, time);
+                    totalComission += item.Amount +item.InterestRate*0.0005f;
+                }
+            }
+            return Tuple.Create(remainingGross, totalComission);
+        }
         #endregion
     }
 }
