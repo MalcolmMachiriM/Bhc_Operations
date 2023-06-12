@@ -23,24 +23,29 @@ namespace Bhc_Operations.Models
         #endregion
 
         #region methods
-        protected float CalculateGross(float quantity, float mass, float price)
+        protected float CalculateGross(List<Bale>bales)
         {
-            float gross = mass * quantity * price;
+            float gross = 0.0f;
+
+            foreach (Bale bale in bales)
+            {
+                gross += bale.Mass * bale.Price;
+            }
             return gross;
         }
 
-        protected float CalculateTax1(float quantity, float mass, float price)
+        protected float CalculateTax1(List<Bale> bales)
         {
-            float gross = CalculateGross(quantity, mass, price);
+            float gross = CalculateGross(bales);
             return (float)(gross - (gross * 0.03f));
         }
 
-        protected float CalculateTax2(float quantity, float mass, float price)
+        protected float CalculateTax2(List<Bale> bales)
         {
-            return (float)(CalculateGross(quantity, mass, price) * 0.015f);
+            return (float)(CalculateGross(bales) * 0.015f);
         }
 
-        protected float CalcuateTax3(float qty, float mass, float price )
+        protected float CalcuateTax3(float qty)
         {
             return qty * 5.00f;
         }
