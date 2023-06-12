@@ -23,7 +23,7 @@ namespace Bhc_Operations.Models
         #endregion
 
         #region methods
-        protected float CalculateGross(List<Bale>bales)
+        public static float CalculateGross(List<Bale>bales)
         {
             float gross = 0.0f;
 
@@ -34,56 +34,106 @@ namespace Bhc_Operations.Models
             return gross;
         }
 
-        protected float CalculateTax1(List<Bale> bales)
+
+        public static float CalcNetAfterTaxes(float gross)
+        {
+            float tax1 = 0.003f * gross;
+            float tax2 = (0.015f * gross) + (0.02f * CalculateTotalMass(bales));
+            float tax3 = 5 * bales.count;
+            float net = gross - tax1 - tax2 - tax3;
+            return net;
+        }
+        public static float CalculateTotalMass(List<Bale> bales)
+        {
+            float totalMass = 0;
+            foreach (Bale bale in bales)
+            {
+                totalMass += bale.Mass;
+            }
+            return totalMass;
+        }
+
+        public static float CalculateDebtWithInterest(float debtAmount, float interestRate)
+        {
+            float interest = (debtAmount * interestRate) / 100;
+            float debtWithInterest = debtAmount + interest;
+            return debtWithInterest;
+        }
+
+        public static float CalculateCommission(float debtAmount)
+        {
+            float commission = 0.005f * debtAmount;
+            return commission;
+        }
+
+        public static float ProcessDebts(List<Debt> debts)
+        {
+            float totalCommission = 0;
+            foreach (Debt debt in debts)
+            {
+                float debtWithInterest = CalculateDebtWithInterest(debt.Amount, debt.InterestRate);
+                float commission = CalculateCommission(debtWithInterest);
+                totalCommission += commission;
+            }
+            return totalCommission;
+        }
+
+        public static float ApplyRebate(float gross, Rebate rebate)
+        {
+            float rebateAmount = rebate.flatAmount + (rebate.ratePerKg * CalculateTotalMass(bales));
+            float net = gross - rebateAmount;
+            return net;
+        }
+        public static void ProcessSale(List<Bale> bales, List<Debt> debts, List<Rebate> rebates)
         {
             float gross = CalculateGross(bales);
-            return (float)(gross - (gross * 0.03f));
-        }
+            Console.WriteLine("Gross Value: $" + gross);
 
-        protected float CalculateTax2(List<Bale> bales)
-        {
-            return (float)(CalculateGross(bales) * 0.015f);
-        }
+            float netAfterTaxes = CalcNetAfterTaxes(gross);
+            Console.WriteLine("Net Value After Taxes: $" + netAfterTaxes);
 
-        protected float CalcuateTax3(float qty)
-        {
-            return qty * 5.00f;
-        }
+            float totalCommission = ProcessDebts(debts);
+            Console.WriteLine("Total Commission: $" + totalCommission);
 
-        protected float CalculateDebt(Debt debt, float gross, float time )
-        {
-            return gross - debt.Amount - (debt.Amount *time* debt.InterestRate/100 )- (debt.Amount + debt.InterestRate*0.0005f);
-        }
-
-        protected Tuple<float,float> ProcessDebtItems(List<Debt> debt, float gross, float time)
-        {
-            float remainingGross = 0.00f;
-            float totalComission = 0.00f;
-            foreach (Debt item in debt)
+            foreach (Rebate rebate in rebates)
             {
-                for (item.Priority  = 0; item.Priority < debt.Count; item.Priority++)
-                {
-                    remainingGross += CalculateDebt(item,gross, time);
-                    totalComission += item.Amount +item.InterestRate*0.0005f;
-                }
+                netAfterTaxes = ApplyRebate(netAfterTaxes, rebate);
             }
-            return Tuple.Create(remainingGross, totalComission);
-        }
-        protected float CalculateRebate1(Debt debt, float gross, float time)
-        {
-            return CalculateDebt(debt, gross, time) + (0.05f * Mass);
+            Console.WriteLine("Net Proceeds Due to Grower: $" + netAfterTaxes);
         }
 
-        protected float CalculateRebate2(Debt debt, float gross, float time )
+        public static void Main()
         {
-            return CalculateDebt(debt, gross, time) + (10.02f * Mass * Price);
+            // Create a list of bales
+            List<Bale> bales = new List<Bale>
+        {
+            new Bale { mGrowerNumber = "123456", Mass = 115, Price = 2.50f, Grade = "TMOS", Barcode = "110000011" },
+            new Bale { mGrowerNumber = "123456", Mass = 85, Price = 4.50f, Grade = "TLOS", Barcode = "110000012" },
+            new Bale { mGrowerNumber = "123456", Mass = 95, Price = 5.50f, Grade = "TLOS", Barcode = "110000013 "}
+        };
+
+            // Create a list of debts
+            List<Debt> debts = new List<Debt>
+        {
+            new Debt { Amount = 1000, InterestRate = 5, Priority = 1 },
+            new Debt { Amount = 500, InterestRate = 3, Priority = 2 }
+        };
+
+            // Create a list of rebates
+            List<Rebate> rebates = new List<Rebate>
+        {
+            new Rebate { flatAmount = 50, ratePerKg = 0.02m },
+            new Rebate { flatAmount = 20, ratePerKg = 0.01m }
+        };
+
+            ProcessSale(bales, debts, rebates);
         }
 
 
         #endregion
     }
 
-    public class Program
+    public class Calculations
     {
         public static void Main()
         {
